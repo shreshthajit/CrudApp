@@ -1,0 +1,4 @@
+1.We have installed the following command:
+yarn add react-router-dom
+this command will run a router in package.lock file and as we will navigate multiple pages like home,about,contact this router will help us
+to navigate through this pages.
