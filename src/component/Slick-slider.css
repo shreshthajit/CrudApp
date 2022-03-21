@@ -1,0 +1,36 @@
+.slick-prev:before {
+    content: "<";
+    background-color: black;
+    border-radius: 10px;
+    padding: 10px;
+    // font-size: 30px;
+    font-weight: bold;
+}
+
+.slick-next:before {
+    content: ">";
+    background-color: black;
+    border-radius: 10px;
+    padding:10px;
+    /* font-size: 30px; */
+    font-weight: bold;
+}
+ 
+.items{
+    height: 20rem;
+    width: 20rem;
+    padding: 50px;
+    margin: 30% 30%;
+ }
+
+.items img{
+    width: 90%;
+    height: 90%;
+    border-radius: 1rem;
+    pointer-events: none;     
+}
+
+.carousel{
+    cursor: grab;
+    overflow: hidden;
+  }

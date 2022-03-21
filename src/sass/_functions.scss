@@ -1,0 +1,30 @@
+@function light-comp($color) {
+    $complement: complement($color);
+    $light-complement: lighten($complement, 30%);
+    @return $light-complement;
+  }
+
+
+  @function get-breakpoint-property($prop, $bp) {
+    @return map-get(map-get($bp-sizes, $bp), $prop);
+  }
+
+  
+
+  @function pow($x, $y) {
+    $ret: 1;
+  
+    @if $y > 0 {
+      @for $i from 1 through $y {
+          $ret: $ret * $x;
+      }
+    } 
+  
+    @else {
+      @for $i from $y to 0 {
+          $ret: $ret / $x;
+      }
+    }
+  
+    @return $ret;
+  }

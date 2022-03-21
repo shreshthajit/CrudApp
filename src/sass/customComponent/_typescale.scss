@@ -1,0 +1,55 @@
+@use 'sass:math';
+
+@mixin generate-font-properties($label, $base-font-size, $base-line-height, $scale) {
+    $scale-value: index($font-sizes, $label) - 1;
+  
+    $fs: ($base-font-size * pow($scale, $scale-value));
+    $lh: math.div(($base-font-size * $base-line-height) , $fs);
+  
+    @while $lh < 1 {
+      $lh: $lh + $lh;
+    }
+  
+    font-size: $fs;
+    line-height: $lh;
+  }
+
+
+  @mixin breakpoint($name) {
+    @if not map-has-key($breakpoints, $name) {
+      @warn "Invalid breakpoint `#{$name}`.";
+    } @else {
+        @if map-get($breakpoints, $name) == '' {
+          @content;
+        } @else {
+          @media (min-width: map-get($breakpoints, $name)) {
+          @content;
+        }
+      }
+    }
+  }
+
+  
+
+  @each $label in $font-sizes {
+    %#{$label} {
+      @include generate-font-properties($label, $base-font-size, $base-line-height, $scale);
+    }  
+  }
+
+ 
+
+  @each $size, $data in $bp-sizes {
+  
+    $bsf: get-breakpoint-property(base-font-size, $size);
+    $blh: get-breakpoint-property(base-line-height, $size);
+    $s: get-breakpoint-property(scale, $size);
+  
+    @include breakpoint($size) {
+      @each $label in $font-sizes {
+        #{$label} {
+          @include generate-font-properties($label, $bsf, $blh, $s);
+        } 
+      }
+    }
+  }

@@ -1,0 +1,72 @@
+@use 'sass:math';
+
+
+@mixin btn($bg-color: #e2e2e2) {
+    text-decoration: none;
+    cursor: pointer;
+    display: inline-block;
+    border: 0;
+    padding: $base-padding $base-padding * 2;
+    border-radius: math.div($base-border-radius,5);
+    background-color: $bg-color;    
+  }
+
+  .btn {
+    @include btn;
+  }
+
+  .dropdown-toggle-mixed{
+    &::before {
+      content:  url("data:image/svg+xml,%0A%3Csvg width='17' height='15' viewBox='0 0 17 15' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1.25 7.27393L16.25 7.27393' stroke='white' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M7.2998 13.2985L1.2498 7.27451L7.2998 1.24951' stroke='white' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E%0A");
+      margin: 10px 10px 0px 0px;
+      color: white;
+		}
+    &::after{
+      content: url("data:image/svg+xml,%3Csvg width='16' height='10' viewBox='0 0 16 10' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M15 1.5L8 8.5L1 1.5' stroke='white' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E%0A");
+      margin: 10px 0px 0px 5px;
+      padding-top: 12px
+    }
+  }
+  .dropdown-toggle-down{
+    &::after{
+      content: url("data:image/svg+xml,%3Csvg width='16' height='10' viewBox='0 0 16 10' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M15 1.5L8 8.5L1 1.5' stroke='white' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E%0A");
+      margin: 10px 0px 0px 5px;
+      padding-top: 12px
+    }
+  }
+  .dropdown-toggle-left{
+    &::before {
+      content:  url("data:image/svg+xml,%0A%3Csvg width='17' height='15' viewBox='0 0 17 15' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1.25 7.27393L16.25 7.27393' stroke='white' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M7.2998 13.2985L1.2498 7.27451L7.2998 1.24951' stroke='white' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E%0A");
+      margin: 10px 10px 0px 0px;
+      color: white;
+		}
+  }
+  
+  @each $key, $val in $colors {
+    .btn-#{$key} {
+      @include btn($val);
+      &:hover {
+        background-color: lighten($val, 5);
+      }
+    }
+
+    .btn-outlined-#{$key} {
+      @include btn(#fff);
+      border: $base-border-thickness solid $val;
+      &:hover {
+        background-color: $val;
+      }
+    }
+    
+    .btn-complement-#{$key} {
+      @include btn($val);
+      color: light-comp($val);
+      &:hover {
+        color: $val;
+        background-color: light-comp($val);
+      }
+    }
+  }
+
+ 
+ 
